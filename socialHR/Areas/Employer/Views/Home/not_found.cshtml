@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>not_found</title>
+    <link rel="stylesheet" type="text/css" href="~/Assets/Employer/css/paper-bootstrap-wizard.css" />
+    <style>
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body style="background-color:fff;background-image:url('../../../../Assets/img/notfound.png'); background-repeat: no-repeat; background-attachment:fixed; background-position: center;">
+    <div>
+        <button class="btn btn-default btn-round" type="button" onclick="location.href='@Url.Action("search_page", "Home")'">
+            Quay lại
+        </button>
+    </div>
+
+    <script src="~/Assets/Employer/js/core/jquery.min.js"></script>
+</body>
+</html>

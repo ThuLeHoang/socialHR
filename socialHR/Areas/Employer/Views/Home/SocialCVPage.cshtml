@@ -1,0 +1,658 @@
+﻿
+@{
+    ViewBag.Title = "SocialCVPage";
+    Layout = "~/Areas/Employer/Views/Shared/_Layout.cshtml";
+}
+@using socialHR.Areas.Employer.Models
+@using Newtonsoft.Json.Linq;
+
+
+<link rel="stylesheet" type="text/css" href="~/Assets/Employer/vendor/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="~/Assets/css/CV_presentation.css" />
+<link rel="stylesheet" type="text/css" href="~/Assets/Employer/css/SocialCV.css" />
+<link rel="stylesheet" type="text/css" href="~/Assets/Employer/css/paper-bootstrap-wizard.css" />
+
+@{
+    var data = (AuthorData)ViewData["Message"];
+
+    dynamic fb_data = JValue.Parse(data.FbData.ToString());
+
+    var social_network = (socialNetwork)ViewData["socialNetwork"];
+
+    var temp_count_post = 0;
+    var temp_class_li_post = "";
+}
+
+<div id="social_cv_all">
+    @* social CV *@
+    <div id="CV_div">
+        <div class="normal-profile row">
+            <div class="np_img col-md-3">
+                <img class="img-responsive" src="@data.avatar_url" />
+            </div>
+            <div class="col-md-9">
+                <div class="name-wrapper">
+                    <h1 class="name">
+                        @if (fb_data.name == null)
+                        {
+                            <span>@data.Name</span>
+                        } else {
+                            <span>@fb_data.name</span>       
+                        }
+                    </h1>
+                </div>
+                <br /><br />
+                <div class="personal-detail row">
+                    <div class="col-md-3">
+                        <div id="gender">
+                            <strong>
+                                @if(Int32.Parse(data.Gender) == 0)
+                                {
+                                    <span>không xác định</span>
+                                }
+                                else  {
+                                    if(Int32.Parse(data.Gender) == 1)
+                                    {
+                                        <span>Nam</span>
+                                    }else
+                                    {
+                                        <span>Nữ</span>
+                                    }
+                                }
+                            </strong><br />
+                            <small>GIỚI TÍNH</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div id="date_of_birth">
+                            @if (fb_data.birthday == null)
+                            {
+                                <strong>
+                                    @if (Int32.Parse(data.birthYear.ToString()) == 0)
+                                    {
+                                        <span>@data.birthYearPredict</span>
+                                    }
+                                    else
+                                    {
+                                        <span>@data.birthYear</span>
+                                    }
+                                </strong>
+                            }
+                            else
+                            {
+                                if (fb_data.birthday.ToString().Length <= 5)
+                                {
+                                    if (Int32.Parse(data.birthYear.ToString()) == 0)
+                                    {
+                                        <strong>@fb_data.birthday/@data.birthYear</strong>
+                                    }
+                                    else
+                                    {
+                                        <strong>@fb_data.birthday/@data.birthYearPredict</strong>
+                                    }
+                                }
+                                else
+                                {
+                                    <strong>@fb_data.birthday</strong>
+                                }
+                            }
+                            <br />
+                            <small>NGÀY SINH</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        @if (data.email.ToString() != "")
+                        {
+                            <div id="email">
+                                <strong>
+                                    @data.email
+                                </strong><br />
+                                <small>EMAIL</small>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="personal-detail row">
+                    <div class="col-md-3">
+                        @if (fb_data.mobile_phone != "")
+                        {
+                            <strong>@fb_data.mobile_phone</strong>
+                            <br />
+                            <small>SỐ ĐIỆN THOẠI</small>
+                        }
+                        else
+                        {
+                            <strong></strong>
+                            <br />
+                            <small>SỐ ĐIỆN THOẠI</small>
+                        }
+                    </div>
+                    <div class="col-md-3">
+                        <div id="address">
+                            @if (fb_data.hometown == null)
+                            {
+                                @* de trong input vi khi tra ve location se tra ve so chu khong tra ve ha noi, ho chi minh... *@
+                                <input type="hidden" value="@data.Location" />
+                                <strong></strong><br />
+                                <small>ĐỊA CHỈ</small>
+                            }
+                            else
+                            {
+                                <strong>@fb_data.hometown.name</strong><br />
+                                <small>ĐỊA CHỈ</small>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="language">
+                            @if (data.username.ToString() == "")
+                            {
+                                <strong>
+                                    facebook.com/@data.author_url.ToString().Substring(24)
+                                </strong>
+                            }
+                            else
+                            {
+                                <strong>
+                                    facebook.com/@data.username.ToString()
+                                </strong>
+                            }
+                            <br />
+                            <small>
+                                FACEBOOK
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @* personal profile *@
+            <div id="personal-profile" class="row">
+                <div class="col-md-6 col-sm-12">
+
+                    @* education *@
+                    @if (data.EducationName == "" || fb_data.education == null) { }
+                    else
+                    {
+                        <div class="profile-title">
+                            <i class="now-ui-icons education_hat"></i>Học vấn
+                        </div>
+                        <div class="profile-description">
+                            @foreach (dynamic edu in fb_data.education)
+                            {
+                                <h5>@edu.type</h5>
+                                //classes
+                                if (edu.classes == null) { }
+                                else
+                                {
+                                    <span class="profile-description-item">Classes: </span>
+                                    // dat ten la clas vi de class thi se bi loi
+                                    foreach (dynamic clas in edu.classes)
+                                    {
+                                        <small style="font-size: 14px">@clas.name </small>
+                                    }
+                                    <br />
+
+                                }
+                                //school
+                                if (edu.school == null) { }
+                                else
+                                {
+                                    <span class="profile-description-item">School: </span>
+                                    <small style="font-size: 14px;">@edu.school.name</small><br />
+                                }
+                                //concentration
+                                if (edu.concentration == null) { }
+                                else
+                                {
+                                    <span class="profile-description-item">concentration: </span>
+                                    foreach (dynamic conce in edu.concentration)
+                                    {
+                                        <small style="font-size: 14px">@conce.name </small>
+                                    }
+                                }
+                            }
+
+
+                        </div>
+                    }
+                    @* end education *@
+
+                    @* Languages *@
+                    @if (fb_data.languages == null) { }
+                    else
+                    {
+                        <div class="profile-title">
+                            <i class="location_world now-ui-icons"></i>Ngoại ngữ
+                        </div>
+                        <div class="profile-description">
+                            @foreach (dynamic lang in fb_data.languages)
+                            {
+                                <span class="profile-description-item">
+                                    @lang.name
+                                </span><br />
+                            }
+                        </div>
+                    }
+                    @* end Languages *@
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    @if (fb_data.work == null) { }
+                    else
+                    {
+                        <div class="profile-title">
+                            <i class="now-ui-icons business_badge"></i> Kinh nghiệm làm việc
+                        </div>
+                        <div class="profile-description">
+                            <br />
+                            @foreach (dynamic wk in fb_data.work)
+                            {
+                                <span class="m-t-10">&#9830;</span>
+                                if (wk.position == null)
+                                {
+                                    if (wk.location == null)
+                                    {
+                                        if (wk.employer == null) { }
+                                        else
+                                        {
+                                            <span>@wk.employer.name</span>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (wk.employer == null)
+                                        {
+                                            <span>@wk.location.name</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@wk.employer.name, @wk.location.name</span>
+                                        }
+                                    }
+                                }
+                                else //position != null
+                                {
+                                    if (wk.location == null)
+                                    {
+                                        if (wk.employer == null)
+                                        {
+                                            <span>@wk.position.name</span><br />
+                                        }
+                                        else
+                                        {
+                                            <span>@wk.position.name tại @wk.employer.name</span>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (wk.employer == null)
+                                        {
+                                            <span>@wk.position.name tại @wk.location.name</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@wk.position.name tại @wk.employer.name, @wk.location.name</span>
+                                        }
+                                    }
+                                }
+                                if (wk.position == null && wk.location == null && wk.employer == null) { }
+                                else
+                                {
+                                    if(wk.start_date == "0000-00" || wk.start_date == null) {}
+                                    else
+                                    {
+                                        <span>(từ @wk.start_date)</span>
+                                    }
+                                    <br /><br />
+                                }
+                            }
+
+                        </div>
+                    }
+                </div>
+            </div>
+            @* end personal profile *@
+
+
+
+            @* social profile *@
+            <div id="social-profile">
+                <hr />
+                @* social network *@
+                <div id="social-profile-network">
+                    <div class="social-title-big">
+                        <i class="now-ui-icons location_world"></i><span>Social Network</span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-lg-6" id="most-interactive-friend">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">
+                                        Bạn bè trên Facebook
+                                    </h5>
+                                    <p class="fb-friend-explain">Những người bạn tương tác nhiều nhất</p>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-full-width table-tasks">
+                                        <table class="table">
+                                            <tbody>
+                                                @foreach (AuthorData mif in social_network.most_interactive_friend)
+                                                {
+                                                    <tr href="@mif.author_url">
+                                                        <td class="img-row redirect">
+                                                            <div class="img-wrapper">
+                                                                <img class="img-raised" src="@mif.avatar_url" />
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-left redirect">
+                                                            @mif.Name
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span class="IS-title">Influence score:</span>
+                                                            <span class="IS-point">@mif.influence_score</span>
+                                                        </td>
+                                                        <td class="td-actions text-right">
+                                                            @using (Html.BeginForm("SocialCVPage", "Home", FormMethod.Post))
+                                                            {
+                                                                <input type="hidden" value="@data.Id" name="string_to_req"/>
+                                                                <input type="hidden" value="3" name="type_search"/>
+                                                                <button type="submit" class="btn btn-icon">
+                                                                    <i class="now-ui-icons ui-1_zoom-bold"></i>
+                                                                </button>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-lg-6" id="highest-Influence-score-friend">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">Bạn bè có ảnh hưởng</h5>
+                                    <p class="fb-friend-explain">Những người bạn có Influence score cao nhất</p>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-full-width table-tasks">
+                                        <table class="table">
+                                            <tbody>
+                                                @foreach (AuthorData mif in social_network.high_influencer_score_friend)
+                                                {
+                                                    <tr href="@mif.author_url">
+                                                        <td class="img-row redirect">
+                                                            <div class="img-wrapper">
+                                                                <img class="img-raised" src="@mif.avatar_url" />
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-left redirect">
+                                                            @mif.Name
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span class="IS-title">Influence score:</span>
+                                                            <span class="IS-point">@mif.influence_score</span>
+                                                        </td>
+                                                        <td class="td-actions text-right">
+                                                            @using (Html.BeginForm("SocialCVPage", "Home", FormMethod.Post))
+                                                            {
+                                                                <input type="hidden" value="@data.Id" name="string_to_req" />
+                                                                <input type="hidden" value="3" name="type_search" />
+                                                                <button type="submit" class="btn btn-icon">
+                                                                    <i class="now-ui-icons ui-1_zoom-bold"></i>
+                                                                </button>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @* end network *@
+                @* facebook behavior *@
+                <hr />
+                <div id="facebook-behavior">
+                    <div class="social-title-big">
+                        <strong>f</strong><span>Social Facebook</span>
+                    </div>
+                    @* bai viet tren facebook *@
+                    @* click vào avatar hay tên, time sẽ redirect đến trang cv của người đó - click vào xem post mới link đến bài viết *@
+                    <div style="margin-top: -10px;">
+                        <div class="header text-center">
+                            <div class="card card-timeline card-plain">
+                                <div class="card-header">
+                                    <h5 class="title">Bài viết trên facebook</h5>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="timeline">
+                                        @foreach (fbPost post in social_network.fb_post)
+                                        {
+                                            if (temp_count_post % 2 == 0)
+                                            {
+                                                temp_class_li_post = "timeline-inverted";
+                                            }
+                                            else
+                                            {
+                                                temp_class_li_post = "";
+                                            }
+                                            temp_count_post++;
+
+                                            <li class="@temp_class_li_post">
+                                                <div class="timeline-badge">
+                                                    @temp_count_post
+                                                </div>
+                                                <div class="timeline-panel">
+                                                    <div class="timeline-heading">
+                                                        <a href="@data.author_url" class="fb-user-url"></a>
+                                                        <div class="fb-img-wrapper redirect">
+                                                            <img class="fb-img-raised" src="@data.avatar_url" />
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-9 col-sm-9 row">
+                                                                <div class="col-md-12 col-sm-12">
+                                                                    <span class="fb-user-name redirect">
+                                                                        @post.author_name
+                                                                    </span>
+                                                                </div>
+                                                                <div class="col-md-12 col-sm-12 time-post-div">
+                                                                    <span class="fb-time-post redirect">
+                                                                        @post.time_post
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-sm-3">
+                                                                <div class="IS-score-title">
+                                                                    Influence score: <span class="IS-score">@post.influence_score</span>
+                                                                </div>
+                                                                <div class="IS-score-wrapper">
+                                                                    <div class="IS-score-slide" style="width: calc(@post.influence_score / 10) * 100%;"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="timeline-body">
+                                                        <p>
+                                                            @post.content.ToString();
+                                                        </p>
+                                                    </div>
+                                                    <div class="timeline-footer row">
+                                                        <div class="col-md-6 col-xs-6">
+                                                            <a href="https://www.facebook.com/ghienbongdaofficial/posts/716839052033073"></a>
+                                                            <button class="visit-post rippleBtn">xem bài viết</button>
+                                                        </div>
+                                                        <div class="col-md-6 col-xs-6 row">
+                                                            <div class="col-md-6 col-xs-6">
+                                                                <i class="now-ui-icons ui-2_like"></i>
+                                                                <span class="group-like-num">@post.num_like</span>
+                                                            </div>
+                                                            <div class="col-md-6 col-xs-6">
+                                                                <i class="now-ui-icons ui-2_chat-round"></i>
+                                                                <span class="group-cmt-num">@post.num_comment</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @* end bai viet tren facebook *@
+
+                    @* binh luan tren facebook *@
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">
+                                Bình luận trên facebook
+                            </h5>
+                            <p class="fb-friend-explain">
+                                Top bình luật mới nhất trên facebook
+                            </p>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-full-width table-tasks">
+                                <table class="table">
+                                    @foreach (fbComment comment in social_network.fb_comment)
+                                    {
+                                        <tr href="@comment.url">
+                                            <td class="img-row redirect">
+                                                <div class="img-wrapper row">
+                                                    <img class="img-raised" src="@data.avatar_url" />
+                                                </div>
+                                            </td>
+                                            <td class="text-left">
+                                                <span class="fb-post-text" id="fb-post-1">
+                                                    @if (comment.content.ToString().Length > 600)
+                                                    {
+                                                        <span class="comment_content">@comment.content.ToString().Substring(0, 80)</span>
+                                                        <button class="btn btn-success fb-post-toggle-text">more>></button>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="comment_content">@comment.content.ToString()</span>
+                                                    }
+                                                </span>
+                                                <input type="hidden" value="@comment.content.ToString()"/>
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="animate-btn-container">
+                                                    <button class="visit-post-1 animate-btn-1">
+                                                        <span>Xem bài viết</span>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    @* end binh luan tren facebook *@
+                </div>
+                @* end facebook behavior *@
+
+                @* Fanpage group *@
+                <div class="card" id="fanpage-group">
+                    <div class="card-header">
+                        <h5 class="card-title text-center" id="most-fanpage-group">
+                            Các fanpage, group tương tác nhiều nhất
+                        </h5>
+                        <div class="row">
+                            @* top 5 fanpage *@
+                            <div class="col-md-6">
+                                <div class="card-header">
+                                    <h5 class="card-title text-center">
+                                        Top 5 fanpage
+                                    </h5>
+                                </div>
+                                <div class="table-full-width table-tasks">
+                                    <table class="table">
+                                        <tbody>
+                                            @foreach (fbFanpage fanpage in social_network.fb_fanpage)
+                                            {
+                                                <tr href="@fanpage.fanpage_url">
+                                                    <td class="img-row redirect">
+                                                        <div class="img-wrapper">
+                                                            <img class="img-raised" src="@fanpage.avartar_url" />
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-left redirect">
+                                                        @fanpage.name
+                                                    </td>
+                                                    <td class="td-actions text-right row interact">
+                                                        <div class="col-md-12 text-right" data-toggle="tooltip" data-placement="top" title="Số lần like các bài viết trong fanpage">
+                                                            <i class="now-ui-icons ui-2_like"></i>
+                                                            <span class="fanpage-like-num">@fanpage.num_like</span>
+                                                        </div>
+                                                        <div class="col-md-12 text-right" data-toggle="tooltip" data-placement="top" title="Số lần bình luận trong fanpage">
+                                                            <i class="now-ui-icons ui-2_chat-round"></i>
+                                                            <span class="fanpage-cmt-num">@fanpage.num_comment</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            @* end top fanpage *@
+                            @* top 5 group *@
+                            <div class="col-md-6">
+                                <div class="card-header">
+                                    <h5 class="card-title text-center">
+                                        Top 5 group
+                                    </h5>
+                                </div>
+                                <div class="table-full-width table-tasks">
+                                    <table class="table">
+                                        <tbody>
+                                            @foreach (fbGroup group in social_network.fb_group)
+                                            {
+                                                <tr href="@group.group_url">
+                                                    <td class="img-row redirect">
+                                                        <div class="img-wrapper">
+                                                            <img class="img-raised" src="@group.avartar_url" />
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-left redirect">
+                                                        @group.name
+                                                    </td>
+                                                    <td class="td-actions text-right row interact">
+                                                        <div class="col-md-12 text-right" data-toggle="tooltip" data-placement="right" title="Số lần like các bài viết trong group">
+                                                            <i class="now-ui-icons ui-2_like"></i>
+                                                            <span class="group-like-num">@group.num_like</span>
+                                                        </div>
+                                                        <div class="col-md-12 text-right" data-toggle="tooltip" data-placement="right" title="Số lần bình luận trong group">
+                                                            <i class="now-ui-icons ui-2_chat-round"></i>
+                                                            <span class="group-cmt-num">@group.num_comment</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            @* end top group *@
+                        </div>
+                    </div>
+                    <div class="card-body">
+
+                    </div>
+                </div>
+                @* end fanpage group *@
+            </div>
+        </div>
+        @* end social CV *@
+    </div>
+</div>
+<script src="~/Assets/js/vue.js"></script>
+<script src="~/Assets/Employer/js/core/jquery.min.js"></script>
+<script src="~/Assets/Employer/js/SocialCV.js"></script>

@@ -1,0 +1,531 @@
+﻿body {
+}
+
+/*normal profile*/
+.img-responsive {
+    height:279px;
+    width:auto;
+}
+.sector {
+    font-size: 24px;
+    color: #ff5722;
+}
+.auto-detect-sector {
+    font-size: 16px;
+}
+.personal-detail {
+    margin-top: 38px;
+}
+.profile-title {
+    color: black;
+    font-size: 23px;
+}
+.social-title-big {
+    color:darkcyan;
+    font-size: 35px;
+}
+
+.social-title-big i {
+    position: relative;
+    top: 5px;
+}
+.social-title-big strong {
+    position: relative;
+    top: 5px;
+}
+
+.social-title-big:hover {
+    color: #01c6c6;
+}
+
+.social-title-big:hover ~ .social-title-big strong {
+    background-color:#01c6c6;
+}
+
+.profile-title, .social-title {
+    font-weight: bold;
+}
+.profile-title i, .social-title i {
+    margin-right: 10px;
+    margin-top: 5px;
+}
+.profile-description {
+    margin-bottom: 15px;
+}
+.profile-description-item {
+    margin-left: 1px;
+    font-weight: bold;
+}
+.profile-description-item-desc {
+    font-weight: normal;
+}
+#personal-profile {
+    margin-top: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+}
+/*end normal profile*/
+
+
+
+/*social profile*/
+#social-profile {
+    width: 100%;
+}
+#social-profile-network tbody tr td {
+    cursor: pointer;
+}
+#social-profile-network tbody tr:hover {
+    background-color: #e8e8e8;
+}
+#facebook-behavior tbody tr .redirect {
+    cursor: pointer;
+}
+#fanpage-group tr:hover {
+    background-color: #e8e8e8;
+}
+
+/*end social profile*/
+/**********************custom de su dung cho nhieu cho khac****************************/
+.fb-friend-explain {
+    font-weight: 400;
+    color: #9A9A9A;
+    font-size: 0.7412em;
+}
+
+.show-more {
+    border:none;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: #3d4b60;
+}
+.show-more:hover {
+    color:#5b6e8c;
+    text-decoration:underline;
+}
+
+.IS-title {
+    color: #5b6e8c;
+}
+
+.fb-post-toggle-text {
+    font-size: 11px;
+    color:white;
+    border: none;
+}
+.fb-post-toggle-text:hover {
+    background-color: #00f400;
+    color:black;
+    border: none;
+}
+
+.fb-img-wrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0;
+    margin-right: 5px;
+    z-index:1;
+}
+.fb-img-raised {
+    box-shadow: 0px 10px 25px 0px rgba(0, 0, 0, 0.3);
+}
+.fb-user-name {
+    color: #365899;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+.fb-user-name:hover {
+    text-decoration:underline;
+}
+.redirect {
+    cursor: pointer;
+}
+
+.fb-user-url {
+    display: none;
+}
+.time-post-div {
+    position:relative;
+}
+.fb-time-post {
+    position: absolute;
+    color: #616770;
+    font-size: 12px;
+    top:-15px;
+}
+.fb-time-post:hover {
+    text-decoration:underline;
+}
+
+.visit-post {
+    padding: .1rem .3rem .2rem;
+    cursor: pointer;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    font-size: 1rem;
+    line-height: 1.25;
+    border-radius: .25rem;
+}
+
+.visit-post-1 {
+    position: relative;
+    color: black;
+    width: 70px;
+    height: 70px;
+    font-size: .75rem;
+    transition: all 0.3s;
+    background-color: white;
+    border:none;
+    cursor: pointer;
+    outline: none;
+}
+
+.visit-post-1:focus {
+    outline: none;
+}
+.visit-post-1 span {
+    transition: all 0.3s;
+    transform: scale(1, 1);
+}
+.visit-post-1::before, .visit-post-1::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    transition: all 0.3s;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.visit-post-1:hover::after {
+    animation-name: rotatecw;
+    animation-duration: 2s;
+}
+
+.visit-post-1:hover::before {
+    animation-name: rotateccw;
+    animation-duration: 3s;
+}
+
+.visit-post-1:hover::after, .visit-post-1:hover::before {
+    left: 0px;
+    width: 70px;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes rotatecw {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotateccw {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+.visit-post-1::before, .visit-post-1::after {
+    content: '';
+    position: absolute;
+    transition: all 0.3s;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.animate-btn-container {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rippleBtn {
+    display: block;
+    background-color: dodgerblue;
+    color: white;
+    cursor: pointer;
+    box-shadow: .2px 2px 12px rgba(0,0,0,.2);
+    transition: 200ms ease;
+    outline: none;
+    border: none;
+}
+.rippleBtn:hover {
+    background-color: rgb(21,125,228);
+}
+.rippleMask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    z-index: 1000;
+}
+
+.rippleCircle {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: rgba(245,245,245,.8);
+    border-radius: 50%;
+    animation: 600ms linear ripple;
+    transform: scale(0);
+}
+
+@-webkit-keyframes ripple {
+    to {
+        transform: scale(2.2);
+        opacity: 0;
+    }
+}
+
+.IS-score-wrapper {
+    width: 100%;
+    height: 5px;
+    background-color: #af0000;
+}
+.IS-score-title, IS-score {
+    font-size: 12px;
+    color: #616770;
+}
+.IS-score-slide {
+    height: 100%;
+    background-color: green;
+}
+
+#most-fanpage-group {
+    margin-bottom: 27px;
+}
+.fanpage-like-num, .fanpage-cmt-num {
+    font-size: 14px;
+}
+
+.interact {
+    position: absolute;
+    right: 15px;
+    max-width: 100px;
+}
+.interact div {
+    cursor: pointer;
+}
+/* - - - - - - - - timeline - - - - - - - - */
+#facebook-behavior .timeline{
+
+}
+.timeline-heading {
+    margin-bottom: 15px;
+    text-align: left;
+    display: flex;
+}
+.timeline-body {
+    margin-bottom: 15px;
+}
+.timeline {
+    list-style: none;
+    padding: 20px 0 20px;
+    position: relative;
+}
+
+    .timeline:before {
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        content: " ";
+        width: 3px;
+        background-color: #eeeeee;
+        left: 50%;
+        margin-left: -1.5px;
+    }
+
+    .timeline > li {
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+        .timeline > li:before,
+        .timeline > li:after {
+            content: " ";
+            display: table;
+        }
+
+        .timeline > li:after {
+            clear: both;
+        }
+
+        .timeline > li:before,
+        .timeline > li:after {
+            content: " ";
+            display: table;
+        }
+
+        .timeline > li:after {
+            clear: both;
+        }
+
+        .timeline > li > .timeline-panel {
+            width: 46%;
+            float: left;
+            border: 1px solid #d4d4d4;
+            border-radius: 5px;
+            padding: 20px;
+            position: relative;
+            -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+        }
+
+            .timeline > li > .timeline-panel:before {
+                position: absolute;
+                top: 26px;
+                right: -15px;
+                display: inline-block;
+                border-top: 15px solid transparent;
+                border-left: 15px solid #ccc;
+                border-right: 0 solid #ccc;
+                border-bottom: 15px solid transparent;
+                content: " ";
+            }
+
+            .timeline > li > .timeline-panel:after {
+                position: absolute;
+                top: 27px;
+                right: -14px;
+                display: inline-block;
+                border-top: 14px solid transparent;
+                border-left: 14px solid #fff;
+                border-right: 0 solid #fff;
+                border-bottom: 14px solid transparent;
+                content: " ";
+            }
+
+        .timeline > li > .timeline-badge {
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            font-size: 1.4em;
+            text-align: center;
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            margin-left: -25px;
+            background-color: #999999;
+            z-index: 100;
+            border-top-right-radius: 50%;
+            border-top-left-radius: 50%;
+            border-bottom-right-radius: 50%;
+            border-bottom-left-radius: 50%;
+        }
+
+        .timeline > li.timeline-inverted > .timeline-panel {
+            float: right;
+        }
+
+            .timeline > li.timeline-inverted > .timeline-panel:before {
+                border-left-width: 0;
+                border-right-width: 15px;
+                left: -15px;
+                right: auto;
+            }
+
+            .timeline > li.timeline-inverted > .timeline-panel:after {
+                border-left-width: 0;
+                border-right-width: 14px;
+                left: -14px;
+                right: auto;
+            }
+
+.timeline-badge.primary {
+    background-color: #2e6da4 !important;
+}
+
+.timeline-badge.success {
+    background-color: #3f903f !important;
+}
+
+.timeline-badge.warning {
+    background-color: #f0ad4e !important;
+}
+
+.timeline-badge.danger {
+    background-color: #d9534f !important;
+}
+
+.timeline-badge.info {
+    background-color: #5bc0de !important;
+}
+
+.timeline-title {
+    margin-top: 0;
+    color: inherit;
+}
+
+.timeline-body > p,
+.timeline-body > ul {
+    margin-bottom: 0;
+}
+
+    .timeline-body > p + p {
+        margin-top: 5px;
+    }
+
+@media (max-width: 767px) {
+    ul.timeline:before {
+        left: 40px;
+    }
+
+    ul.timeline > li > .timeline-panel {
+        width: calc(100% - 90px);
+        width: -moz-calc(100% - 90px);
+        width: -webkit-calc(100% - 90px);
+    }
+
+    ul.timeline > li > .timeline-badge {
+        left: 15px;
+        margin-left: 0;
+        top: 16px;
+    }
+
+    ul.timeline > li > .timeline-panel {
+        float: right;
+    }
+
+        ul.timeline > li > .timeline-panel:before {
+            border-left-width: 0;
+            border-right-width: 15px;
+            left: -15px;
+            right: auto;
+        }
+
+        ul.timeline > li > .timeline-panel:after {
+            border-left-width: 0;
+            border-right-width: 14px;
+            left: -14px;
+            right: auto;
+        }
+}

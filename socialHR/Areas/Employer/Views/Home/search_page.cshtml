@@ -1,0 +1,214 @@
+﻿
+@{
+    ViewBag.Title = "RecruitmentPost";
+    Layout = "~/Areas/Employer/Views/Shared/_Layout.cshtml";
+}
+@model socialHR.Areas.Employer.Models.AuthorData
+<link rel="stylesheet" href="~/Assets/Employer/css/paper-bootstrap-wizard.css" />
+
+@* html code *@
+
+<div id="search_container">
+    @using (Html.BeginForm("SocialCVPage", "Home", FormMethod.Post))
+    {
+        <div id="logo">
+            Social HR
+        </div>
+        <div class="row" id="form_search">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div>
+                        <input id="string_to_req" name="string_to_req" type="text" class="form-control" placeholder="Nhập từ khóa bạn muốn tìm kiếm" />
+                        <select class="form-control" name="type_search" style="background-color:green; color:white;">
+                            <option value="1">Số điện thoại</option>
+                            <option value="2">Facebook username</option>
+                            <option value="3">Facebook ID</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-2">
+                <div id="search">
+                    <button type="submit" >Tìm kiếm</button>
+                </div>
+            </div>
+            <div class="col-md-5"></div>
+        </div>
+        
+    }
+</div>
+
+@* end html code *@
+<script src="~/Assets/Employer/js/core/jquery.min.js"></script>
+<script src="~/Assets/Employer/js/jquery.bootstrap.wizard.js"></script>
+<script src="~/Assets/Employer/js/paper-bootstrap-wizard.js"></script>
+
+
+@* CSS code *@
+<style>
+    #search_container {
+        width: 100%;
+        height: 100%;
+        transition: margin-top .3s;
+    }
+
+    #logo {
+        margin-top: 20%;
+        text-align: center;
+        width: 100%;
+        font-weight: 900;
+        font-size: 50px;
+    }
+
+    #form_search {
+        overflow-y: hidden;
+        transition: height .3s;
+        height: 50px;
+    }
+
+     #form_search select {
+        position: absolute;
+        cursor: pointer;
+        top: 1px;
+        right: 0px;
+        width: 200px;
+    }
+    
+    #form_search .form-group>div {
+        position: relative;
+    }
+
+    #collapse_advance_search i {
+        font-size: 10px;
+    }
+
+    #advance_search {
+        margin-top: 12.5px;
+        text-align: center;
+        width: 100%;
+        height: 0;
+        overflow-y: hidden;
+    }
+
+    #advance_search span {
+        margin-left: 15px;
+        margin-right: 15px;
+        padding: 7px 10px 7px 10px;
+        border: none;
+        background-color: white;
+        border-radius: 15px;
+        text-align: center;
+        width: 78px;
+        cursor: pointer;
+    }
+
+    #advance_search .form-group {
+        text-align: left;
+    }
+
+    .form-control {
+        background-color: #F3F2EE;
+        border: 1px solid #e3e3e3;
+        border-radius: 30px;
+        color: #66615b;
+        line-height: normal;
+        font-size: .8571em;
+        transition: color .3s ease-in-out,border-color .3s ease-in-out,background-color .3s ease-in-out;
+        box-shadow: none;
+    }
+
+    #form_search .form-control {
+        background-color: #f9f9f7;
+        border: 1px solid #e3e3e3;
+        border-radius: 30px;
+        color: #66615b;
+        line-height: normal;
+        font-size: .8571em;
+        transition: color .3s ease-in-out,border-color .3s ease-in-out,background-color .3s ease-in-out;
+        box-shadow: none;
+    }
+
+    #choose_location_div {
+        position: relative;
+    }
+
+    #location_list {
+        display: none;
+        list-style-type: none;
+        padding: 0;
+        color: black;
+        position: absolute;
+        z-index: 2;
+        background-color: white;
+        font-size: 14px;
+        top: 72px;
+        left: 30px;
+        width: 160px;
+    }
+
+    #location_list li a {
+        border: 1px solid #ddd;
+        margin-top: -1px;  /*cai nay la de chan double border*/
+        background-color: #f6f6f6;
+        padding: 10px 18px;
+        text-decoration: none;
+        font-size: 14px;
+        color: black;
+        display: block;
+    }
+    #location_list li a:hover:not(.header) {
+        background-color: #eee;
+    }
+
+    #form_search .form-control:focus {
+        background-color: white;
+    }
+
+    #form_search input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 30px #fff inset;
+    }
+
+    #form_search input:placeholder-shown {
+        background-color: white;
+    }
+
+    #form_search input::placeholder {
+        color: #9e9696;
+        opacity: 1;
+    }
+
+    #form_search input:-ms-input-placeholder {
+        color: #9e9696;
+    }
+
+    #form_search input::-ms-input-placeholder {
+        color: #9e9696;
+    }
+    #search button {
+        line-height: normal;
+        border-radius: 30px;
+        background-color: #035daa;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+        box-sizing: border-box;
+        font-size: 14px;
+        padding: 7px 18px;
+    }
+    #search button:hover {
+        background-color: #1c96ff;
+    }
+</style>
+@* end CSS code *@
+
+
+@* JS code *@
+
+
+@* end JS code *@

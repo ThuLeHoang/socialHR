@@ -1,0 +1,11 @@
+﻿body {
+}
+
+#title_login {
+    font-size: 20px;
+}
+#hr {
+    border:none;
+    background-color: black;
+    color:white;
+}

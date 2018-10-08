@@ -1,0 +1,119 @@
+﻿#navigation button {
+    border-width: 0px;
+}
+#social_cv_all {
+    width:100%;
+    height:100%;
+    min-width:100%;
+    min-height: 100%;
+}
+/*bxh ung vien trong social cv*/
+#candidate_rank_div {
+    left: calc(100vw - 150px);
+    width: 150px;
+    height: 0;
+    overflow: hidden;
+    word-break: break-word;
+    top: 62px;
+    background-color: white;
+    z-index: 2;
+    color: white;
+    transition: .5s;
+}
+@media screen and (max-width:991px) {
+    #candidate_rank_div {
+        left: calc(100vw + 110px);
+    }
+}
+#candidate_rank_header {
+    height: 34px;
+    background-color: #a09393;
+    color: white;
+    line-height: 17px;
+    font-weight: bold;
+}
+
+#input_show_rank {
+    display: none;
+}
+
+
+
+#show_rank {
+    position: fixed;
+    left: calc(100vw - 30px);
+    top: 150px;
+    width: 30px;
+    background-color: rgba(81, 80, 80, 0.6);
+    z-index: 1;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 3px;
+}
+
+#minimize_rank_chart {
+    position: relative;
+    right: 0;
+    cursor:pointer;
+    line-height: 17px;
+}
+#minimize_rank_chart:hover {
+    font-weight:bold;
+}
+/*end bxh ung vien*/
+
+/*khu vuc cv*/
+#CV_div {
+    width:inherit;
+    height:inherit;
+}
+strong {
+    max-width: 100%;
+    overflow-x:hidden;
+}
+
+.profile-description {
+    min-height: 50px;
+}
+.profile-description h5 {
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .profile-description {
+        min-height: 0;
+        max-height: 100%;
+    }
+}
+
+#facebook-behavior > .social-title-big {
+    position: relative;
+}
+#facebook-behavior>.social-title-big> span {
+    margin-left: 40px;
+}
+#facebook-behavior div > strong {
+    font-size: 23px;
+    height: auto;
+    color: white;
+    padding: 3px 15px;
+    background-color: darkcyan;
+    border-radius: 50%;
+    position: absolute;
+}
+
+#facebook-behavior .card{
+    margin-top: 10px;
+}
+
+.timeline-heading>.row {
+    width: 100%;
+}
+
+.timeline-body {
+    text-align: left;
+}
+/*end cv*/

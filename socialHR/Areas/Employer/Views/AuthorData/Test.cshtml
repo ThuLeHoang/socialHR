@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = null;
+}
+@using socialHR.Areas.Employer.Models
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Test</title>
+</head>
+<body>
+    <div>
+        @{
+            var data = (AuthorData)ViewData["Message"];
+        }
+        <h3>Name</h3>
+        @data.Name
+        <h3>Birth year</h3>
+        @data.birthYear
+        <h3>Gender</h3>@data.Gender
+        <h3>Phone</h3>@data.phone_number
+        <h3>Id</h3>@data.Id
+    </div>
+</body>
+</html>

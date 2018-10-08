@@ -1,0 +1,110 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Social HR</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/png" href="~/Assets/img/icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="/Assets/Employer/vendor/bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/Assets/Employer/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/Assets/Employer/fonts/iconic/css/material-design-iconic-font.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/Assets/Employer/vendor/animate/animate.css">
+
+    <link rel="stylesheet" type="text/css" href="/Assets/Employer/vendor/css-hamburgers/hamburgers.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/Assets/Employer/vendor/animsition/css/animsition.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/Assets/Employer/vendor/select2/select2.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/Assets/Employer/vendor/daterangepicker/daterangepicker.css">
+
+    <link rel="stylesheet" type="text/css" href="/Assets/Employer/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/Assets/Employer/css/main.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/Employer/css/style.css" />
+
+
+</head>
+
+<body onresize="load_form()">
+    <div id="particles-js"></div>
+            <div class="wrap-login100" id="wrapper_login">
+                <form class="login100-form validate-form">
+                    <span class="login100-form-title p-b-26" id="title_login" style="font-size: 20px;">
+                        <span id="social">Social</span>
+                        <span id="hr">human resources</span>
+                    </span>
+
+
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">
+                        <input class="input100 login_input" type="text" name="email" v-model="email_has_val" v-bind:class="class_email_val">
+                        <span class="focus-input100" data-placeholder="Email"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                        <span class="btn-show-pass">
+                            <i class="zmdi zmdi-eye"></i>
+                        </span>
+                        <input class="input100 login_input" type="password" name="pass" v-model="pass_has_val" v-bind:class="class_pass_val">
+                        <span class="focus-input100" data-placeholder="Password"></span>
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <div class="wrap-login100-form-btn">
+                            <div class="login100-form-bgbtn" id="login_color"></div>
+                            <button class="login100-form-btn">
+                                @Html.ActionLink("Login", "search_page", "Home", null, new { @class = "login100-form-btn" })
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="text-center p-t-37" id="under_login_btn">
+                        <a class="txt2" id="forgot_password" href="#">
+                            Forgot password ?
+                        </a>
+
+                        <a class="txt2" id="register" href="#">
+                            Sign Up
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+
+    <div id="dropDownSelect1"></div>
+
+    <script src="/Assets/Employer/vendor/jquery/jquery-3.2.1.min.js"></script>
+
+    <script src="/Assets/Employer/vendor/animsition/js/animsition.min.js"></script>
+
+    <script src="/Assets/Employer/vendor/bootstrap/js/popper.js"></script>
+    <script src="/Assets/Employer/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="/Assets/Employer/vendor/select2/select2.min.js"></script>
+
+    <script src="/Assets/Employer/vendor/daterangepicker/moment.min.js"></script>
+    <script src="/Assets/Employer/vendor/daterangepicker/daterangepicker.js"></script>
+
+    <script src="/Assets/Employer/vendor/countdowntime/countdowntime.js"></script>
+
+
+    <script src="~/Assets/Employer/js/particles.js"></script>
+    <script src="~/Assets/Employer/js/app.js"></script>
+    <script src="~/Assets/Employer/js/Login.js"></script>
+    <script src="/Assets/js/vue.js"></script>
+
+    <!-- stats.js -->
+    <script src="~/Assets/Employer/js/lib/stats.js"></script>
+    <script src="/Assets/Employer/js/main.js"></script>
+
+</body>
+</html>
