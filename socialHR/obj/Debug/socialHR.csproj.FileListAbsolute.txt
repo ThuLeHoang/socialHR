@@ -389,6 +389,7 @@ E:\CV\SocialCV\socialHR\obj\Debug\socialHR.csproj.CoreCompileInputs.cache
 E:\CV\SocialCV\socialHR\obj\Debug\socialHR.csproj.CopyComplete
 E:\CV\SocialCV\socialHR\obj\Debug\socialHR.dll
 E:\CV\SocialCV\socialHR\obj\Debug\socialHR.pdb
+<<<<<<< HEAD
 G:\socialHR\SocialCV\socialHR\bin\ApplicationInsights.config
 G:\socialHR\SocialCV\socialHR\bin\socialHR.dll.config
 G:\socialHR\SocialCV\socialHR\bin\socialHR.dll
@@ -489,3 +490,5 @@ G:\socialHR\SocialCV\socialHR\obj\Debug\socialHR.csproj.CoreCompileInputs.cache
 G:\socialHR\SocialCV\socialHR\obj\Debug\socialHR.csproj.CopyComplete
 G:\socialHR\SocialCV\socialHR\obj\Debug\socialHR.dll
 G:\socialHR\SocialCV\socialHR\obj\Debug\socialHR.pdb
+=======
+>>>>>>> c2f4f62... add_chart
