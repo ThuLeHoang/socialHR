@@ -13,11 +13,11 @@ namespace socialHR.Areas.Employer.Models
         
         public int influence_score { get; set; }
         
-        public int num_like { get; set; }
+        public string num_like { get; set; }
 
-        public int num_comment { get; set; }
+        public string num_comment { get; set; }
 
-        public DateTime time_post { get; set; }
+        public string time_post { get; set; }
 
         public string url { get; set; }
     }

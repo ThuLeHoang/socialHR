@@ -9,8 +9,9 @@
 
 <link rel="stylesheet" type="text/css" href="~/Assets/Employer/vendor/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="~/Assets/css/CV_presentation.css" />
-<link rel="stylesheet" type="text/css" href="~/Assets/Employer/css/SocialCV.css" />
+
 <link rel="stylesheet" type="text/css" href="~/Assets/Employer/css/paper-bootstrap-wizard.css" />
+<link rel="stylesheet" type="text/css" href="~/Assets/Employer/css/SocialCV.css" />
 
 @{
     var data = (AuthorData)ViewData["Message"];
@@ -36,8 +37,10 @@
                         @if (fb_data.name == null)
                         {
                             <span>@data.Name</span>
-                        } else {
-                            <span>@fb_data.name</span>       
+                        }
+                        else
+                        {
+                            <span>@fb_data.name</span>
                         }
                     </h1>
                 </div>
@@ -46,15 +49,17 @@
                     <div class="col-md-3">
                         <div id="gender">
                             <strong>
-                                @if(Int32.Parse(data.Gender) == 0)
+                                @if (Int32.Parse(data.Gender) == 0)
                                 {
                                     <span>không xác định</span>
                                 }
-                                else  {
-                                    if(Int32.Parse(data.Gender) == 1)
+                                else
+                                {
+                                    if (Int32.Parse(data.Gender) == 1)
                                     {
                                         <span>Nam</span>
-                                    }else
+                                    }
+                                    else
                                     {
                                         <span>Nữ</span>
                                     }
@@ -101,15 +106,22 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        @if (data.email.ToString() != "")
-                        {
-                            <div id="email">
+                        <div id="marrigeStatus">
+                            @if (Int32.Parse(data.marrigeStatus) == 0 || Int32.Parse(data.marrigeStatus) == 2)
+                            {
                                 <strong>
-                                    @data.email
-                                </strong><br />
-                                <small>EMAIL</small>
-                            </div>
-                        }
+                                    Độc thân
+                                </strong>
+                            }
+                            else
+                            {
+                                <strong>
+                                    Đã kết hôn
+                                </strong>
+                            }
+                            <br />
+                            <small>Tình trạng hôn nhân</small>
+                        </div>
                     </div>
                 </div>
                 <div class="personal-detail row">
@@ -297,7 +309,7 @@
                                 if (wk.position == null && wk.location == null && wk.employer == null) { }
                                 else
                                 {
-                                    if(wk.start_date == "0000-00" || wk.start_date == null) {}
+                                    if (wk.start_date == "0000-00" || wk.start_date == null) { }
                                     else
                                     {
                                         <span>(từ @wk.start_date)</span>
@@ -353,8 +365,8 @@
                                                         <td class="td-actions text-right">
                                                             @using (Html.BeginForm("SocialCVPage", "Home", FormMethod.Post))
                                                             {
-                                                                <input type="hidden" value="@data.Id" name="string_to_req"/>
-                                                                <input type="hidden" value="3" name="type_search"/>
+                                                                <input type="hidden" value="@mif.Id" name="string_to_req" />
+                                                                <input type="hidden" value="3" name="type_search" />
                                                                 <button type="submit" class="btn btn-icon">
                                                                     <i class="now-ui-icons ui-1_zoom-bold"></i>
                                                                 </button>
@@ -378,25 +390,25 @@
                                     <div class="table-full-width table-tasks">
                                         <table class="table">
                                             <tbody>
-                                                @foreach (AuthorData mif in social_network.high_influencer_score_friend)
+                                                @foreach (AuthorData hif in social_network.high_influencer_score_friend)
                                                 {
-                                                    <tr href="@mif.author_url">
+                                                    <tr href="@hif.author_url">
                                                         <td class="img-row redirect">
                                                             <div class="img-wrapper">
-                                                                <img class="img-raised" src="@mif.avatar_url" />
+                                                                <img class="img-raised" src="@hif.avatar_url" />
                                                             </div>
                                                         </td>
                                                         <td class="text-left redirect">
-                                                            @mif.Name
+                                                            @hif.Name
                                                         </td>
                                                         <td class="text-center">
                                                             <span class="IS-title">Influence score:</span>
-                                                            <span class="IS-point">@mif.influence_score</span>
+                                                            <span class="IS-point">@hif.influence_score</span>
                                                         </td>
                                                         <td class="td-actions text-right">
                                                             @using (Html.BeginForm("SocialCVPage", "Home", FormMethod.Post))
                                                             {
-                                                                <input type="hidden" value="@data.Id" name="string_to_req" />
+                                                                <input type="hidden" value="@hif.Id" name="string_to_req" />
                                                                 <input type="hidden" value="3" name="type_search" />
                                                                 <button type="submit" class="btn btn-icon">
                                                                     <i class="now-ui-icons ui-1_zoom-bold"></i>
@@ -411,6 +423,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="card">
+                        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
                     </div>
                 </div>
                 @* end network *@
@@ -452,20 +467,16 @@
                                                         <div class="fb-img-wrapper redirect">
                                                             <img class="fb-img-raised" src="@data.avatar_url" />
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col-md-9 col-sm-9 row">
-                                                                <div class="col-md-12 col-sm-12">
-                                                                    <span class="fb-user-name redirect">
-                                                                        @post.author_name
-                                                                    </span>
-                                                                </div>
-                                                                <div class="col-md-12 col-sm-12 time-post-div">
-                                                                    <span class="fb-time-post redirect">
-                                                                        @post.time_post
-                                                                    </span>
-                                                                </div>
+                                                        <div style="width: 100%; display: flex;">
+                                                            <div class="post_name_and_time" style="width: 67%; display: inline-block; position:relative;">
+                                                                <span class="fb-user-name redirect">
+                                                                    @post.author_name
+                                                                </span>
+                                                                <span class="fb-time-post redirect">
+                                                                    @post.time_post
+                                                                </span>
                                                             </div>
-                                                            <div class="col-md-3 col-sm-3">
+                                                            <div class="post_influence_score" style="width: 33%; display: inline-block;">
                                                                 <div class="IS-score-title">
                                                                     Influence score: <span class="IS-score">@post.influence_score</span>
                                                                 </div>
@@ -480,21 +491,23 @@
                                                             @post.content.ToString();
                                                         </p>
                                                     </div>
-                                                    <div class="timeline-footer row">
-                                                        <div class="col-md-6 col-xs-6">
-                                                            <a href="https://www.facebook.com/ghienbongdaofficial/posts/716839052033073"></a>
-                                                            <button class="visit-post rippleBtn">xem bài viết</button>
-                                                        </div>
-                                                        <div class="col-md-6 col-xs-6 row">
-                                                            <div class="col-md-6 col-xs-6">
+                                                    <div class="timeline-footer" style="display: flex;">
+                                                        <div style="width: 30%; display: flex;">
+                                                            <div style="width: 50%;">
                                                                 <i class="now-ui-icons ui-2_like"></i>
                                                                 <span class="group-like-num">@post.num_like</span>
                                                             </div>
-                                                            <div class="col-md-6 col-xs-6">
+                                                            <div style="width: 50%;">
                                                                 <i class="now-ui-icons ui-2_chat-round"></i>
                                                                 <span class="group-cmt-num">@post.num_comment</span>
                                                             </div>
                                                         </div>
+                                                        
+                                                        <div style="width: 70%;">
+                                                            <a href="https://www.facebook.com/ghienbongdaofficial/posts/716839052033073"></a>
+                                                            <button style="float:right" class="visit-post rippleBtn">xem bài viết</button>
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </li>
@@ -539,7 +552,7 @@
                                                         <span class="comment_content">@comment.content.ToString()</span>
                                                     }
                                                 </span>
-                                                <input type="hidden" value="@comment.content.ToString()"/>
+                                                <input type="hidden" value="@comment.content.ToString()" />
                                             </td>
                                             <td class="text-center">
                                                 <div class="animate-btn-container">
@@ -644,10 +657,11 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        <div id="chartContainer" style="height: 400px; width: 100%;">
 
+                        </div>
                     </div>
-                </div>
-                @* end fanpage group *@
+                </div>                 @* end fanpage group *@
             </div>
         </div>
         @* end social CV *@
@@ -656,3 +670,5 @@
 <script src="~/Assets/js/vue.js"></script>
 <script src="~/Assets/Employer/js/core/jquery.min.js"></script>
 <script src="~/Assets/Employer/js/SocialCV.js"></script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js">
+

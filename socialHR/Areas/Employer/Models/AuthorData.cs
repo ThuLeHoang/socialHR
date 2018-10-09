@@ -54,15 +54,13 @@ namespace socialHR.Areas.Employer.Models
         [Text(Name = "location")]
         public string Location { get; set; }
 
+        [Text(Name = "marrigeStatus")]
+        public string marrigeStatus { get; set; }
+
         [Text(Name = "phone_mobile")]
         public object phone_number { get; set; }
 
         [Text(Name = "username")]
         public object username { get; set; }
     }
-
-    //public class FacebookData
-    //{
-    //    public object 
-    //}
 }

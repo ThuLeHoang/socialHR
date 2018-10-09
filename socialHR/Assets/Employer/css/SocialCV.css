@@ -116,4 +116,13 @@ strong {
 .timeline-body {
     text-align: left;
 }
+
+.post_name_and_time {
+    display: inline-block;
+    width: 66%;
+}
+post_influence_score {
+    display: inline-block;
+    width: 34%;
+}
 /*end cv*/

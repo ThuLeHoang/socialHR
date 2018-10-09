@@ -64,6 +64,7 @@ namespace socialHR.Areas.Employer.Controllers
             /*************************************fake data***********************************/
             fbGroup grtemp = new fbGroup();
             fbPost ptemp = new fbPost();
+            fbPost ptemp2 = new fbPost();
             fbComment ctemp = new fbComment();
             fbFanpage ftemp = new fbFanpage();
 
@@ -111,12 +112,20 @@ namespace socialHR.Areas.Employer.Controllers
             grtemp.name = "Xôi lạc bánh khúc";
             grtemp.group_url = "https://www.facebook.com/groups/xoilac/";
 
-            ptemp.author_name = "Trần Tiểu Vy";
+            ptemp2.author_name = data.Name;
+            ptemp2.content = "Một bài post nào đó";
+            ptemp2.influence_score = 6;
+            ptemp2.num_like = "100";
+            ptemp2.num_comment = "100";
+            ptemp2.time_post = DateTime.Now.ToString("h:mm:ss tt");
+            ptemp2.url = "https://www.facebook.com/elastic.co/?__tn__=kC-R&eid=ARABVYV-W0Ry2Jz0TY1Xt0iJuLT4f656w70jhreXfaAStQ1wAXQHuth_BrZ5u8r0Fp3wL76LiZnmmgI21_VxYOzIwODA7eMer9unPR8&hc_ref=ARQURFQ5Ix2hCmCnl_B6P9KnPJhUYg7lw9BE7MBpuHhbE8JnY1bRklAODoJ2NUm8pP8&fref=nf&__xts__%5B0%5D=68.ARBfQoh81KH580yiS0mT6y5ApnmDU5OwsH0gGuIy53lTsVo3JGc5RssQIrk55FGtkpI0wja5NTSkLFM8Xov6b-m-whUR8fkgo8-0jHWm63uubySHL9eNPMIn65PkUOjreb-eRfngIgtVT9NcmIy3LuZc5tkoGgbBnYBQ5bIp5h1kibRkf439wjKAFWFydYoOYA";
+
+            ptemp.author_name = data.Name;
             ptemp.content = "Ahihi mình làm hoa hậu rồi";
             ptemp.influence_score = 6;
-            ptemp.num_like = 6;
-            ptemp.num_comment = 9;
-            ptemp.time_post = new DateTime();
+            ptemp.num_like = "100";
+            ptemp.num_comment = "100";
+            ptemp.time_post = DateTime.Now.ToString("h:mm:ss tt");
             ptemp.url = "https://www.facebook.com/elastic.co/?__tn__=kC-R&eid=ARABVYV-W0Ry2Jz0TY1Xt0iJuLT4f656w70jhreXfaAStQ1wAXQHuth_BrZ5u8r0Fp3wL76LiZnmmgI21_VxYOzIwODA7eMer9unPR8&hc_ref=ARQURFQ5Ix2hCmCnl_B6P9KnPJhUYg7lw9BE7MBpuHhbE8JnY1bRklAODoJ2NUm8pP8&fref=nf&__xts__%5B0%5D=68.ARBfQoh81KH580yiS0mT6y5ApnmDU5OwsH0gGuIy53lTsVo3JGc5RssQIrk55FGtkpI0wja5NTSkLFM8Xov6b-m-whUR8fkgo8-0jHWm63uubySHL9eNPMIn65PkUOjreb-eRfngIgtVT9NcmIy3LuZc5tkoGgbBnYBQ5bIp5h1kibRkf439wjKAFWFydYoOYA";
 
             ftemp.num_comment = 2;
@@ -129,6 +138,7 @@ namespace socialHR.Areas.Employer.Controllers
             ctemp.url = "https://www.facebook.com/elastic.co/?__tn__=kC-R&eid=ARABVYV-W0Ry2Jz0TY1Xt0iJuLT4f656w70jhreXfaAStQ1wAXQHuth_BrZ5u8r0Fp3wL76LiZnmmgI21_VxYOzIwODA7eMer9unPR8&hc_ref=ARQURFQ5Ix2hCmCnl_B6P9KnPJhUYg7lw9BE7MBpuHhbE8JnY1bRklAODoJ2NUm8pP8&fref=nf&__xts__%5B0%5D=68.ARBfQoh81KH580yiS0mT6y5ApnmDU5OwsH0gGuIy53lTsVo3JGc5RssQIrk55FGtkpI0wja5NTSkLFM8Xov6b-m-whUR8fkgo8-0jHWm63uubySHL9eNPMIn65PkUOjreb-eRfngIgtVT9NcmIy3LuZc5tkoGgbBnYBQ5bIp5h1kibRkf439wjKAFWFydYoOYA";
 
             social.fb_post.Add(ptemp);
+            social.fb_post.Add(ptemp2);
             social.fb_group.Add(grtemp);
             social.fb_fanpage.Add(ftemp);
             social.fb_comment.Add(ctemp);
@@ -136,7 +146,7 @@ namespace socialHR.Areas.Employer.Controllers
 
             ViewData["socialNetwork"] = social;
             ViewData["Message"] = data;
-            if (data == null || string_to_req == "" || string_to_req == null)
+            if (data.Id == null || string_to_req == "" || string_to_req == null)
             {
                 return RedirectToAction("not_found", "Home");
             }else

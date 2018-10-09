@@ -150,14 +150,12 @@
 .fb-user-url {
     display: none;
 }
-.time-post-div {
-    position:relative;
-}
 .fb-time-post {
     position: absolute;
     color: #616770;
     font-size: 12px;
-    top:-15px;
+    top:15px;
+    left: 0;
 }
 .fb-time-post:hover {
     text-decoration:underline;
