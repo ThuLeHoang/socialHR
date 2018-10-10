@@ -36,6 +36,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,6 +46,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Elasticsearch.Net, Version=6.0.0.0, Culture=neutral, PublicKeyToken=96c599bbe3e70f5d, processorArchitecture=MSIL">
@@ -329,6 +331,7 @@
     <Content Include="Assets\Employer\vendor\select2\select2.js" />
     <Content Include="Assets\Employer\vendor\select2\select2.min.css" />
     <Content Include="Assets\Employer\vendor\select2\select2.min.js" />
+    <Content Include="Assets\img\banner-bg.png" />
     <Content Include="Assets\img\facebook-icon.png" />
     <Content Include="Assets\img\icon.png" />
     <Content Include="Assets\img\logo.PNG" />

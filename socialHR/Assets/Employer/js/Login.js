@@ -19,7 +19,7 @@ var app = new Vue({
     },
     computed: {
         class_email_val() {
-            if (this.email_has_val !== '') {
+            if (this.email_has_val !== 'admin@gmail.com') {
                 return 'has-val';
             } else {
                 return '';
