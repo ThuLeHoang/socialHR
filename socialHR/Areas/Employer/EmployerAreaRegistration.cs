@@ -17,7 +17,8 @@ namespace socialHR.Areas.Employer
             context.MapRoute(
                 "Employer_default",
                 "Employer/{controller}/{action}/{id}",
-                new { action = "Login",Controller="HomeController", id = UrlParameter.Optional }
+                new { action = "Login",Controller="HomeController", id = UrlParameter.Optional },
+                new[] { "socialHR.Areas.Employer.Controllers" }
             );
         }
     }

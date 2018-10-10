@@ -13,14 +13,13 @@ namespace socialHR.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Employer()
         {
-            ViewBag.Message = "Your application description page.";
-
+        
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult SignIn()
         {
             ViewBag.Message = "Your contact page.";
 
