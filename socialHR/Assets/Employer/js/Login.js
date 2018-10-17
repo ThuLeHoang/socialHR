@@ -10,27 +10,3 @@ $(document).ready(function () {
 $(document).resize(function () {
     load_form();
 });
-
-var app = new Vue({
-    el: '#wrapper_login',
-    data: {
-        email_has_val: '',
-        pass_has_val:''
-    },
-    computed: {
-        class_email_val() {
-            if (this.email_has_val !== 'admin@gmail.com') {
-                return 'has-val';
-            } else {
-                return '';
-            }
-        },
-        class_pass_val() {
-            if (this.pass_has_val !== '') {
-                return 'has-val';
-            } else {
-                return '';
-            }
-        }
-    }
-});
