@@ -37,46 +37,47 @@
 
 <body onresize="load_form()">
     <div id="particles-js"></div>
-            <div class="wrap-login100" id="wrapper_login">
-                <form class="login100-form validate-form">
-                    <span class="login100-form-title p-b-26" id="title_login" style="font-size: 20px;">
-                        <span id="social">Social</span>
-                        <span id="hr">human resources</span>
-                    </span>
+    <div class="wrap-login100" id="wrapper_login">
+        <form class="login100-form validate-form" v-on:submit="submit">
+            <span class="login100-form-title p-b-26" id="title_login" style="font-size: 20px;">
+                <span id="social">Social</span>
+                <span id="hr">human resources</span>
+            </span>
 
 
-                    <div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">
-                        <input class="input100 login_input" type="text" name="email" v-model="email_has_val" v-bind:class="class_email_val">
-                        <span class="focus-input100" data-placeholder="Email"></span>
-                    </div>
-
-                    <div class="wrap-input100 validate-input" data-validate="Enter password">
-                        <span class="btn-show-pass">
-                            <i class="zmdi zmdi-eye"></i>
-                        </span>
-                        <input class="input100 login_input" type="password" name="pass" v-model="pass_has_val" v-bind:class="class_pass_val">
-                        <span class="focus-input100" data-placeholder="Password"></span>
-                    </div>
-                    <div class="container-login100-form-btn">
-                        <div class="wrap-login100-form-btn">
-                            <div class="login100-form-bgbtn" id="login_color"></div>
-                            <button class="login100-form-btn">
-                                @Html.ActionLink("Login", "search_page", "Home", null, new { @class = "login100-form-btn" })
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="text-center p-t-37" id="under_login_btn">
-                        <a class="txt2" id="forgot_password" href="#">
-                            Forgot password ?
-                        </a>
-
-                        <a class="txt2" id="register" href="#">
-                            Sign Up
-                        </a>
-                    </div>
-                </form>
+            <div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">
+                <input class="input100 login_input" type="text" name="email" v-model="email_has_val">
+                <span class="focus-input100" data-placeholder="Email"></span>
             </div>
+
+            <div class="wrap-input100 validate-input" data-validate="Enter password">
+                <span class="btn-show-pass">
+                    <i class="zmdi zmdi-eye"></i>
+                </span>
+                <input class="input100 login_input" type="password" name="pass" v-model="pass_has_val">
+                <span class="focus-input100" data-placeholder="Password"></span>
+            </div>
+            <div style="color:red">{{login_error_mess}}</div>
+            <div class="container-login100-form-btn">
+                <div class="wrap-login100-form-btn">
+                    <div class="login100-form-bgbtn" id="login_color"></div>
+                    <button class="login100-form-btn" type="submit">
+                        Login
+                    </button>
+                </div>
+            </div>
+
+            <div class="text-center p-t-37" id="under_login_btn">
+                <a class="txt2" id="forgot_password" href="#">
+                    Forgot password ?
+                </a>
+
+                <a class="txt2" id="register" href="#">
+                    Sign Up
+                </a>
+            </div>
+        </form>
+    </div>
 
 
     <div id="dropDownSelect1"></div>
@@ -98,12 +99,34 @@
 
     <script src="~/Assets/Employer/js/particles.js"></script>
     <script src="~/Assets/Employer/js/app.js"></script>
-    <script src="~/Assets/Employer/js/Login.js"></script>
-    <script src="/Assets/js/vue.js"></script>
-
+    <script type="text/javascript" src="~/Assets/Employer/js/Login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     <!-- stats.js -->
     <script src="~/Assets/Employer/js/lib/stats.js"></script>
     <script src="/Assets/Employer/js/main.js"></script>
+
+    <script type="text/javascript">
+        new Vue({
+            el: "#wrapper_login",
+            data: {
+                email_has_val: "",
+                pass_has_val: "",
+                login_error_mess: ""
+            },
+            methods: {
+                submit: function (event) {
+                    if (this.email_has_val !== 'admin@gmail.com' || this.pass_has_val !== 'admin123') {
+                        this.login_error_mess = "Email or Password is wrong";
+                        event.preventDefault();
+                    }
+                    else {
+                        this.login_error_mess = "";
+                        event.preventDefault();
+                        window.location.href = '/Employer/Home/search_page';
+                    }
+                }
+            }});
+    </script>
 
 </body>
 </html>
