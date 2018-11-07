@@ -164,5 +164,10 @@ namespace socialHR.Areas.Employer.Controllers
         {
             return View();
         }
+
+        public ActionResult profile()
+        {
+            return View();
+        }
     }
 }

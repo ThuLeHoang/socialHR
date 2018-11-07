@@ -331,6 +331,7 @@
     <Content Include="Assets\Employer\vendor\select2\select2.js" />
     <Content Include="Assets\Employer\vendor\select2\select2.min.css" />
     <Content Include="Assets\Employer\vendor\select2\select2.min.js" />
+    <Content Include="Assets\img\avatar.jpg" />
     <Content Include="Assets\img\banner-bg.png" />
     <Content Include="Assets\img\facebook-icon.png" />
     <Content Include="Assets\img\icon.png" />
