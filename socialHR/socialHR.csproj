@@ -341,6 +341,7 @@
     <Content Include="Assets\img\temp1.jpg" />
     <Content Include="Assets\img\temp2.jpg" />
     <Content Include="Assets\img\vietnamese.png" />
+    <Content Include="Assets\js\profile.js" />
     <Content Include="Assets\js\tinymce.min.js" />
     <Content Include="Assets\js\vue.js" />
     <Content Include="Content\bootstrap-grid.css" />
