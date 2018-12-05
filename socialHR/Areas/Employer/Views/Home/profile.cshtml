@@ -2,9 +2,12 @@
     ViewBag.Title = "profile";
     Layout = "~/Areas/Employer/Views/Shared/_Layout.cshtml";
 }
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+
+<script src="https://unpkg.com/vue@2.4.2" type="text/javascript"></script>
 <style>
     #cover_img {
         width: 100%;
@@ -22,39 +25,97 @@
         padding-left: 0;
         margin-left: 15px;
     }
+
     .tab {
         padding: 7px 5px;
         background-color: white;
         text-decoration: none;
         display: inline-block;
         border: 1px solid white;
+        color: dimgray;
     }
+
         .tab:hover {
             text-decoration: none;
             background-color: lightgray;
+            color: dimgray;
         }
-        .tab:active{
+
+        .tab:active {
             background-color: lightgray;
+            color: black;
         }
-    .nav-tabs{
+
+    .nav-tabs {
         text-align: end;
         position: absolute;
         left: 150px;
         bottom: 0;
     }
-    #avatar{
+
+    #avatar {
         height: 150px;
         width: 150px;
         position: absolute;
         left: 0;
         bottom: 0;
         radial-gradient: 50%;
-        border: 1px solid white; 
+        border: 1px solid white;
     }
-    .body{
+
+    .body {
         max-width: 800px;
         margin: auto;
-        background: white;
+    }
+
+    .tab-content {
+        padding-top: 10px;
+        
+    }
+
+    .title_tab {
+        background-color: #DCDCDC;
+        padding: 10px;
+        border: 1px solid #C0C0C0;
+        color: dimgray;
+    }
+
+    .tab_title {
+        padding: 10px;
+        margin: 10px;
+        color: dimgray;
+    }
+
+    a {
+        color: dimgray;
+    }
+
+        a:hover {
+            color: black;
+            text-decoration: none;
+        }
+
+        a:active {
+            color: black;
+            text-decoration: none;
+            font: bold 12px arial;
+        }
+
+    .tab_title_right {
+        border-right: 1px solid #C0C0C0;
+        border-left: 1px solid #c0c0c0;
+        margin-left: 15px;
+    }
+
+    .text_blue {
+        color: darkblue;
+    }
+
+    .pad-top-20 {
+        padding-top: 20px;
+    }
+    .detail_content{
+        border-right: 1px solid #c0c0c0;
     }
 </style>
 <div class="body">
@@ -74,20 +135,60 @@
         </div>
     </div>
     <div class="tab-content">
-        <div id="profile" class="tab-pane fade in active">
-            <h3>Thông tin cá nhân</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <div id="profile" class="tab-pane active">
+            <div class="title_tab">
+                <span class="glyphicon glyphicon-user"></span>
+                <span><strong>THÔNG TIN CÁ NHÂN</strong></span>
+            </div>
+            <div class="detail_content">
+                <div class="row">
+                    <div class="col-md-3 tab_title_right" style="border-bottom: 1px solid #C0C0C0">
+                        <div class="tab_title"><a data-toggle="tab" href="#review">Tổng quan</a></div>
+                        <div class="tab_title"><a data-toggle="tab" href="#menu1">Công việc và học vấn</a></div>
+                        <div class="tab_title"><a data-toggle="tab" href="#menu2">Những nơi công tác</a></div>
+                        <div class="tab_title"><a data-toggle="tab" href="#menu3">Thông tin cơ bản và liên hệ</a></div>
+                    </div>
+
+                    <div class="col-md-5" style="margin-right: 10px;border-bottom: 1px solid #C0C0C0" >
+                        <div class="pad-top-20">
+                            <div>Làm việc tại <work class="text_blue"></work></div>
+                            <div class="pad-top-20">
+                                Học <majors></majors> tại <school class="text_blue"></school>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3 pad-top-20" style="border-bottom: 1px solid #C0C0C0">
+                        <div class="row">
+                            <span class="glyphicon glyphicon-phone"></span>
+                            <phone_number></phone_number>
+                        </div>
+                        <div class="row">
+                            <i class="fas fa-birthday-cake"></i>
+                            <birthday></birthday>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
         </div>
         <div id="info_company" class="tab-pane fade">
-            <h3>Thông tin công ty</h3>
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            
+
         </div>
         <div id="setting" class="tab-pane fade">
-            <h3>Cài đặt tài khoản</h3>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+           
+
         </div>
 
     </div>
 </div>
 
-
+<script src="/Assets/js/profile.js"></script>
